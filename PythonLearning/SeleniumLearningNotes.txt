@@ -1,0 +1,170 @@
+视频资源下载
+链接：http://pan.baidu.com/s/1boTrTmv 密码：w7ml
+
+解压密码: redis章节:www.helloworld.com 其他:www.zygx8.com
+
+*********************搭建Python开发环境（含Selenium自动化部署）******************************
+~1.如何配置Python + Selenium + webdriver搭建自动化测试开发平台（Windows7环境下）
+a、从Python官网下载 Python2.7
+https://www.python.org/
+b、安装Python2.7时选择勾上pip和自动配置环境变量（默认Python安装路径C:\Python27），若未自动配置环境变量，手动配置也可
+c、确定Python和pip安装成功后（命令行下输入python进入python交互式环境>>>），
+附安装第三方模块PIL的方法 pip install PIL提示出错，因为PIL官方只支持32位，没有提供64位版本
+可以安装非官方模块Pillow代替,pip install Pillow
+http://effbot.org/downloads#pil
+*********************搭建Python+Selenium自动化******************************
+d、通过pip安装selenium:pip install selenium
+或通过下载包安装python2.7，安装selenium版本是3.4.3
+
+e、从http://chromedriver.storage.googleapis.com/index.html下载对应Chrome版本的chromedriver，放入对应Chrome安装路径：C:\Program Files (x86)\Google\Chrome\Application
+同时将该路径添加到系统环境变量path中
+
+firefox driver的设置方式类似,附下载链接
+https://github.com/mozilla/geckodriver/releases
+
+iedriverserver下载链接：
+https://selenium-release.storage.googleapis.com/index.html
+
+
+ie需专门设置：
+必须在IE选项设置的安全页中，4个区域的启用保护模式的勾选都去掉（或都勾上），即保持四个区域的保护模式是一致的
+
+针对IE10和更高的版本，必须在IE选项设置中的高级页中，取消增强保护模式
+
+浏览器的缩放比例必须设置为100%，这样元素定位才不会出现问题
+
+
+https://github.com/easonhan007/webdriver_guide/blob/master/README.md
+
+学习笔记
+
+import time # time类
+time.sleep() #sleep方法
+driver.maximize_window()  #浏览器窗口最大化方法
+driver.set_window_size(240,320) #浏览器窗口设定化方法
+driver.title #获取当前页面title
+driver.current_url #获取当前页面url
+driver.back()
+driver.forward()
+
+selenium元素定位方法如下，用于操作对象、获得对象属性、text或数量
+find_element_by_id()   #比较方便，若无id，可以编辑代码加上id值
+find_element_by_name() #同id
+find_element_by_tag_name() #可定位到同一类
+find_element_by_class_name() #可定位到同一类
+find_element_by_link_text() #适用于超链接
+find_element_by_partial_link_text() #适用于超链接
+find_element_by_css_selector()
+find_element_by_xpath() #能不用xpath不用，可以点击id值，其适用于逻辑判断的场景
+
+定位一组对象的方法如下，用于批量操作对象，或先获取一组对象，再在这组对象中进行过滤选择操作
+
+find_elements_by_tag_name()
+find_elements_by_class_name()
+find_elements_by_link_text()
+find_elements_by_partial_link_text()
+find_elements_by_css_selector()
+find_elements_by_xpath()
+
+http://pan.baidu.com/s/1ge4VNUV
+
+
+WebdriverWait显示等待
+隐式等待方法implicitly_wait()
+
+***************Selenium的3种等待方式*****************
+1、强制等待time.sleep()方法
+time.sleep(2)
+2、隐性等待implicitly_wait()方法
+driver = webdriver.Firefox()
+driver.implicitly_wait(30) #设置最长等待时间30s
+#如果在规定时间内网页加载完成，则执行下一步，否则等到截止时间再进行下一步
+缺陷1：实际会遇到个别js加载特别慢，仍需等待页面全部加载完成才能执行下一步
+缺陷2：implicitly_wait()对整个driver周期都期作用，只需设置1次即可
+3、显性等待WebDriverWait类，包括until()和until_not()
+from selenium.webdriver.support.wait import WebDriverWait
+WebDriverWait(driver, 超时时长, 调用频率, 忽略异常).until(可执行方法, 超时时返回的信息)
+
+expected_conditions是selenium的一个模块，其中包含一系列可用于判断的条件：
+ 
+selenium.webdriver.support.expected_conditions（模块）
+ 
+这两个条件类验证title，验证传入的参数title是否等于或包含于driver.title
+title_is
+title_contains
+ 
+这两个人条件验证元素是否出现，传入的参数都是元组类型的locator，如(By.ID, 'kw')
+顾名思义，一个只要一个符合条件的元素加载出来就通过；另一个必须所有符合条件的元素都加载出来才行
+presence_of_element_located
+presence_of_all_elements_located
+ 
+这三个条件验证元素是否可见，前两个传入参数是元组类型的locator，第三个传入WebElement
+第一个和第三个其实质是一样的
+visibility_of_element_located
+invisibility_of_element_located
+visibility_of
+ 
+这两个人条件判断某段文本是否出现在某元素中，一个判断元素的text，一个判断元素的value
+text_to_be_present_in_element
+text_to_be_present_in_element_value
+ 
+这个条件判断frame是否可切入，可传入locator元组或者直接传入定位方式：id、name、index或WebElement
+frame_to_be_available_and_switch_to_it
+ 
+这个条件判断是否有alert出现
+alert_is_present
+ 
+这个条件判断元素是否可点击，传入locator
+element_to_be_clickable
+ 
+这四个条件判断元素是否被选中，第一个条件传入WebElement对象，第二个传入locator元组
+第三个传入WebElement对象以及状态，相等返回True，否则返回False
+第四个传入locator以及状态，相等返回True，否则返回False
+element_to_be_selected
+element_located_to_be_selected
+element_selection_state_to_be
+element_located_selection_state_to_be
+ 
+最后一个条件判断一个元素是否仍在DOM中，传入WebElement对象，可以判断页面是否刷新了
+staleness_of
+
+
+问题记录1、level_locate脚本执行报错，调用Chrome实例报错超时
+调用firefox报错找不到目标文件路径
+结果：已定位解决
+
+
+在web自动化测试中，我们需要获取测试对象的四种状态
+
+是否显示。使用element.is_displayed()方法；是否存在。
+使用find_element_by_xxx方法，捕获其抛出的异常, 如果存在异常的话则可以确定该元素不存在；
+是否被选中。一般是判断表单元素，比如radio或checkbox是否被选中。使用element.is_selected()方法；
+是否enable，也就是是否是灰化状态。使用element.is_enabled()方法；
+
+上传文件：
+dr.find_element_by_name('file').send_keys('./upload_file.md')
+
+from selenium.webdriver.support.ui import Select
+#webdriver提供Select类提供选择相关的操作、方法
+select = Select(driver.find_element_by_name('name'))
+select.select_by_index(index)
+select.select_by_visible_text("text")
+select.select_by_value(value)
+包括反向选择：
+select = Select(driver.find_element_by_id('id'))
+select.deselect_all()
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from time import sleep
+import os
+
+https://selenium-python.readthedocs.io/page-objects.html#
+6、页面对象模式Page Objects
+页面对象模式的作用：
+创建跨测试用例的可重用代码
+减少大量重复代码
+UI变更后，对应只需修改1处
+
+对页面类进行抽象封装
+
