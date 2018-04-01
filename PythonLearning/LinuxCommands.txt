@@ -1,0 +1,99 @@
+[root@www ~]# grep [-acinv] [--color=auto] '搜寻字符串' filename
+选项与参数：
+-a ：将 binary 文件以 text 文件的方式搜寻数据
+-c ：计算找到 '搜寻字符串' 的次数
+-i ：忽略大小写的不同，所以大小写视为相同
+-n ：顺便输出行号
+-v ：反向选择，亦即显示出没有 '搜寻字符串' 内容的那一行！
+--color=auto ：可以将找到的关键词部分加上颜色的显示喔！
+
+范例一：将 last 当中，有出现 root 的那一行就取出来；
+[root@www ~]# last | grep 'root'
+
+范例二：与范例一相反，只要没有 root 的就取出！
+[root@www ~]# last | grep -v 'root'
+
+范例三：在 last 的输出信息中，只要有 root 就取出，并且仅取第一栏
+[root@www ~]# last | grep 'root' |cut -d ' ' -f1
+# 在取出 root 之后，利用上个命令 cut 的处理，就能够仅取得第一栏啰！
+
+范例四：取出 /etc/man.config 内含 MANPATH 的那几行
+[root@www ~]# grep --color=auto 'MANPATH' /etc/man.config
+....(前面省略)....
+MANPATH_MAP     /usr/X11R6/bin          /usr/X11R6/man
+MANPATH_MAP     /usr/bin/X11            /usr/X11R6/man
+MANPATH_MAP     /usr/bin/mh             /usr/share/man
+# 神奇的是，如果加上 --color=auto 的选项，找到的关键词部分会用特殊颜色显示喔！
+
+df
+
+free
+
+按下 Alt 和 F1-F6(中的一个)。返回图形桌面，按下 Alt-F7。
+
+file
+
+less
+
+
+命令	行为
+Page UP or b	向上翻滚一页
+Page Down or space	向下翻滚一页
+UP Arrow	向上翻滚一行
+Down Arrow	向下翻滚一行
+G	移动到最后一行
+1G or g	移动到开头一行
+/charaters	向前查找指定的字符串
+n	向前查找下一个出现的字符串，这个字符串是之前所指定查找的
+h	显示帮助屏幕
+q	退出 less 程序
+
+ln file link 硬链接,建立的是新文件指向同一个inode的data区，不可跨区（必须同一文件系统），不能指向目录
+ln -s item link 符号链接 item可以是文件or目录，建立的是指针，指向目标文件
+type
+which
+man
+apropos
+info
+whatis
+alias
+
+cp -i 执行命令，如覆盖copy前交互确认
+cp -v 执行命令时显示处理进度
+ls -i 
+ls -t 按时间排序
+ls -r | ls --reverse 倒序
+type 针对bash命令
+which 针对命令的位置
+man 针对命令
+apropos appropriate commands 搜索匹配命令
+whatis 命令的简短描述
+alias | unalias
+info -- 显示程序信息的入口
+README
+
+ls -l /bin/usr > ls-output.txt 2>1&
+ls -l /bin/usr &> ls-output.txt
+ls -l /bin/usr 2> /dev/null
+cat > filename
+ls /bin /usr/bin | sort | less
+ls /bin /usr/bin | sort | uniq | less
+ls /bin /usr/bin | sort | uniq -d| less #显示duplicates
+wc
+ls /bin /usr/bin | sort | uniq -d| wc -l
+ls /bin /usr/bin | sort | uniq | grep zip
+head
+tail
+tail -f /var/log/messages 一直显示打印实时日志
+ls /usr/bin | tee ls.txt | grep zip
+tee指令会从标准输入设备读取数据，将其内容输出到标准输出设备，同时保存成文件
+echo *
+mkdir {2007..2009}-0{1..9} {2007..2009}-{10..12}
+printenv | less 查看有多少系统变量
+ls -l $(which man) #which的结果是路径的时候
+file $(ls /usr/bin/* | grep zip)
+linux命令行使用$引用变量、参数
+bash shell使用``引用变量、参数
+
+82113004 
+
