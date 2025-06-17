@@ -61,11 +61,11 @@ if __name__ == '__main__':
         "dataType": "message","msg.msg_content":"here is test"
     }
     tempConfig = {
-        "appkey": "f5f29598e4a34fe9d6fbf3fb",
-        "mascret": "46733c695aaa883759359b3c",
+        "appkey": "",
+        "mascret": "",
         "package_name": "",
         "appkey_name": "",
-        "headers": {"Authorization": BasicAuth.get_basic_auth_str("f5f29598e4a34fe9d6fbf3fb", "46733c695aaa883759359b3c"),
+        "headers": {"Authorization": BasicAuth.get_basic_auth_str("", ""),
                     "Content-Type": "application/json"},
         "push_target": rid,
         "uid": 12345,
