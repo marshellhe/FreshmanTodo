@@ -1,0 +1,7 @@
+.nav {
+  & ul {
+    & li {  /* 过度嵌套 */
+      color: red !important;  /* 强行覆盖 */
+    }
+  }
+}
